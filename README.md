@@ -60,7 +60,8 @@ claude mcp list
 # play-sound: /Users/k_dogi/Developer/mcp-server/mcp-server-play-sound/mcp-server-play-sound  - ✓ Connected
 ```
 
-登録した直後は表示されない可能性があります。
+以下のように、登録した直後は MCP サーバーが認識されていない場合があります。<br>
+この場合も [3. ツールの呼び出し方法](#3-ツールの呼び出し方法) に進んで OK です。
 
 ```bash
 ## No MCP servers configured. Use `claude mcp add` to add a server.
