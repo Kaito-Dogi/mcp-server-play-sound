@@ -20,4 +20,4 @@
 
 | MCP サーバー |   ツール   |
 | :----------: | :--------: |
-|  play-sound  | play_grass |
+|  play-sound  | play_glass |
