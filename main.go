@@ -1,48 +1,62 @@
+// FIXME: ChatGPT による自動生成コードのため、後ほどリファクタリングする
+
 package main
 
 import (
 	"context"
+	"errors"
 	"log"
+	"os/exec"
+	"runtime"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-type Input struct {
-	Name string `json:"name" jsonschema:"the name of the person to greet"`
-}
+type Input struct{}
 
 type Output struct {
-	Greeting string `json:"greeting" jsonschema:"the greeting to tell to the user"`
+	Status string `json:"status" jsonschema:"playback status"`
 }
 
-func SayHello(
+// PlayGlass plays the built‑in macOS system sound "Glass.aiff" using afplay.
+func PlayGlass(
 	ctx context.Context,
 	req *mcp.CallToolRequest,
-	input Input,
+	_ Input,
 ) (
 	*mcp.CallToolResult,
 	Output,
 	error,
 ) {
-	return nil, Output{Greeting: "Hello, " + input.Name + "!"}, nil
+	if runtime.GOOS != "darwin" {
+		return nil, Output{Status: "unsupported os"}, errors.New("PlayGlass only supports macOS (darwin)")
+	}
+
+	// Absolute paths to avoid PATH lookup confusion.
+	afplay := "/usr/bin/afplay"
+	sound := "/System/Library/Sounds/Glass.aiff"
+
+	cmd := exec.CommandContext(ctx, afplay, sound)
+	if err := cmd.Run(); err != nil {
+		return nil, Output{Status: "error"}, err
+	}
+	return nil, Output{Status: "played"}, nil
 }
 
 func main() {
-	log.Println(`あああ: start main`)
+	log.Println("mcp-server-play-sound: start")
 
-	// MCP サーバーを作成
+	// Create MCP server
 	server := mcp.NewServer(&mcp.Implementation{Name: "mcp-server-play-sound", Version: "v0.0.1"}, nil)
+	log.Println("mcp-server-play-sound: created server")
 
-	log.Println(`あああ: created a mcp server`)
-
-	// ツールを登録
-	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "Say Hello"}, SayHello)
-
-	log.Println(`あああ: added a tool`)
+	// Register tools
+	mcp.AddTool(server, &mcp.Tool{Name: "play_glass", Description: "Play the macOS system sound Glass.aiff using afplay"}, PlayGlass)
+	log.Println("mcp-server-play-sound: registered tools: play_glass")
 
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
 		log.Fatal(err)
 	}
 
-	log.Println(`あああ: running mcp server...`)
+	log.Println("mcp-server-play-sound: running…")
 }
