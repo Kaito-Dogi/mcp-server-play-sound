@@ -62,6 +62,10 @@ claude mcp list
 
 登録した直後は表示されない可能性があります。
 
+```bash
+## No MCP servers configured. Use `claude mcp add` to add a server.
+```
+
 ### 3. ツールの呼び出し方法
 
 TBD
