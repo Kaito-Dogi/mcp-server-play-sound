@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
@@ -29,21 +28,21 @@ func SayHello(
 }
 
 func main() {
-	fmt.Println(`あああ: start main`)
+	log.Println(`あああ: start main`)
 
 	// MCP サーバーを作成
 	server := mcp.NewServer(&mcp.Implementation{Name: "mcp-server-play-sound", Version: "v0.0.1"}, nil)
 
-	fmt.Println(`あああ: created a mcp server`)
+	log.Println(`あああ: created a mcp server`)
 
 	// ツールを登録
 	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "Say Hello"}, SayHello)
 
-	fmt.Println(`あああ: added a tool`)
+	log.Println(`あああ: added a tool`)
 
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(`あああ: running mcp server...`)
+	log.Println(`あああ: running mcp server...`)
 }
