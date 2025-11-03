@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "play-sound": {
+      "type": "stdio",
+      "command": "/Users/k_dogi/Developer/mcp-server/mcp-server-play-sound/mcp-server-play-sound",
+      "args": [],
+      "env": {}
+    }
+  }
+}
