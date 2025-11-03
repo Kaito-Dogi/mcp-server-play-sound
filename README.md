@@ -28,6 +28,9 @@ chmod +x </path/to/mcp-server-play-sound>
 
 ```bash
 claude mcp add --transport stdio --scope project play-sound -- </path/to/mcp-server-play-sound>
+
+## Added stdio MCP server play-sound with command: </path/to/mcp-server-play-sound>  to project config
+## File modified: </path/to/.mcp.json>
 ```
 
 または `.mcp.json` に直接追加します。
