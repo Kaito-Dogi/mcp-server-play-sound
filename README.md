@@ -17,3 +17,8 @@
 ## 使用方法
 
 TBD
+
+## 参考記事
+
+- [VSCode で Go 言語の開発環境を構築する](https://qiita.com/melty_go/items/c977ba594efcffc8b567)
+- [MCP の Go 公式 SDK が公開されたので早速使ってみた](https://zenn.dev/canary_techblog/articles/191579daa04f2a)
