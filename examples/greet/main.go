@@ -1,3 +1,5 @@
+// Package main provides a simple example MCP server with a greet tool.
+// This is a "Hello World" example demonstrating basic MCP tool registration.
 package main
 
 import (
@@ -28,21 +30,19 @@ func SayHello(
 }
 
 func main() {
-	log.Println(`あああ: start main`)
+	log.Println("example-greet: starting...")
 
-	// MCP サーバーを作成
-	server := mcp.NewServer(&mcp.Implementation{Name: "mcp-server-play-sound", Version: "v0.0.1"}, nil)
+	// Create MCP server
+	server := mcp.NewServer(&mcp.Implementation{Name: "example-greet", Version: "v0.0.1"}, nil)
+	log.Println("example-greet: created server")
 
-	log.Println(`あああ: created a mcp server`)
-
-	// ツールを登録
+	// Register tools
 	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "Say Hello"}, SayHello)
-
-	log.Println(`あああ: added a tool`)
+	log.Println("example-greet: registered tool: greet")
 
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
 		log.Fatal(err)
 	}
 
-	log.Println(`あああ: running mcp server...`)
+	log.Println("example-greet: server stopped")
 }
