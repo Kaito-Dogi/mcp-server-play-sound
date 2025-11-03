@@ -34,3 +34,10 @@ go.work.sum
 .DS_Store
 mcp-server-play-sound
 .mcp.json
+
+# Old files from refactoring
+main.go.old
+*.old
+
+# Coverage reports
+coverage.html
