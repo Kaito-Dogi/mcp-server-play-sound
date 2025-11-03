@@ -30,7 +30,7 @@ chmod +x </path/to/mcp-server-play-sound>
 claude mcp add --transport stdio --scope project play-sound -- </path/to/mcp-server-play-sound>
 ```
 
-または、`.mcp.json` に直接追加します：
+または `.mcp.json` に直接追加します。
 
 ```json
 {
@@ -49,8 +49,6 @@ claude mcp add --transport stdio --scope project play-sound -- </path/to/mcp-ser
 
 #### 2-3. 登録した MCP サーバーの確認
 
-登録した直後は表示されない可能性があります。
-
 ```bash
 claude mcp list
 
@@ -58,6 +56,8 @@ claude mcp list
 #
 # play-sound: /Users/k_dogi/Developer/mcp-server/mcp-server-play-sound/mcp-server-play-sound  - ✓ Connected
 ```
+
+登録した直後は表示されない可能性があります。
 
 ### 3. ツールの呼び出し方法
 
